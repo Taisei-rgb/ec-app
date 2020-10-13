@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { TextInput } from "../UIkit";
 import IconButton from "@material-ui/core/IconButton";
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
@@ -45,16 +45,16 @@ const SetSizesArea = (props) => {
     } else {
       if (index === props.sizes.length) {
         props.setSizes(prevState => [...prevState, { size: size, quantity: quantity }])
-        setIndex(index + 1)
-        setSize("")
+        setIndex(index + 1);
+        setSize("");
         setQuantity(0)
       } else {
-        const newSizes = props.sizes
-        newSizes[index] = { size: size, quantity: quantity }
-        props.setSizes(newSizes)
-        setIndex(newSizes.length)
-        setSize("")
-        setQuantity(0)
+        const newSizes = props.sizes;
+        newSizes[index] = { size: size, quantity: quantity };
+        props.setSizes(newSizes);
+        setIndex(newSizes.length);
+        setSize("");
+        setQuantity(0);
       }
     }
   };
@@ -67,10 +67,10 @@ const SetSizesArea = (props) => {
 
   const deleteSize = (deleteIndex) => {
     const newSizes = props.sizes.filter((item, i) => i !== deleteIndex);
-    props.setSizes(newSizes)
+    props.setSizes(newSizes);
   };
 
-  const memoIndex = useMemo(() => {
+  useEffect(() => {
     setIndex(props.sizes.length)
   }, [props.sizes.length]);
 

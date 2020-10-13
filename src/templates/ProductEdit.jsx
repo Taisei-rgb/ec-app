@@ -48,17 +48,16 @@ const ProductEdit = () => {
 
   useEffect(() => {
     if (id !== "") {
-      db.collection("products").doc(id).get()
-        .then(snapshot => {
-          const data = snapshot.data();
-          setImages(data.images);
-          setName(data.name);
-          setDescription(data.description);
-          setCategory(data.category);
-          setGender(data.gender);
-          setPrice(data.price);
-          // setSizes(data.sizes);
-        })
+      db.collection("products").doc(id).get().then(snapshot => {
+        const product = snapshot.data();
+        setImages(product.images);
+        setName(product.name);
+        setDescription(product.description);
+        setCategory(product.category);
+        setGender(product.gender);
+        setPrice(product.price);
+        setSizes(product.sizes);
+      })
     }
   }, [id]);
 
@@ -94,7 +93,7 @@ const ProductEdit = () => {
         <div className="center">
           <PrimaryButton
             label={"商品情報を保存"}
-            onClick={() => dispatch(saveProduct(id, name, description, category, gender, price, images, sizes))}
+            onClick={() => dispatch(saveProduct(id, name, description, category, gender, price, sizes, images))}
           />
         </div>
       </div>
