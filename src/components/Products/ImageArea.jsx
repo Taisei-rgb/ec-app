@@ -44,7 +44,7 @@ const ImageArea = (props) => {
         const newImage = { id: fileName, path: downloadURL };
         props.setImages((prevState => [...prevState, newImage]))
       });
-    });
+    })
   }, [props.setImages]);
 
 

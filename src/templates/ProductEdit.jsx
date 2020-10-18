@@ -50,9 +50,9 @@ const ProductEdit = () => {
     if (id !== "") {
       db.collection("products").doc(id).get().then(snapshot => {
         const product = snapshot.data();
-        setImages(product.images);
         setName(product.name);
         setDescription(product.description);
+        setImages(product.images);
         setCategory(product.category);
         setGender(product.gender);
         setPrice(product.price);
